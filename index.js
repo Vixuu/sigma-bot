@@ -1,4 +1,4 @@
-// const fs = require("node:fs");
+const fs = require("node:fs");
 // const path = require("node:path");
 const { Client, Intents, Collection } = require("discord.js");
 const { token } = require("./config.json");
@@ -42,6 +42,15 @@ client.on('interactionCreate', async interaction => {
     await interaction.reply("1. Pal weed \n2. Nie wciagaj krysztalu z Torunia \n4. Nie mieszaj alko z mewa \n5. Nie wal z dychy")
   } else if (commandName === 'essa') {
 
+    let memes = []
+
+    const memeDir = './images/';
+    const files = fs.readdirSync(memeDir)
+
+    for (const file of files) {
+      memes.push(file)
+    }
+
     let haveIt = [];
     function generateUniqueRandom(maxNr) {
         //Generate random number
@@ -63,7 +72,7 @@ client.on('interactionCreate', async interaction => {
             }
         }
     }
-    await interaction.reply({files: [`./images/test${generateUniqueRandom(17)}.jpg`]})
+    await interaction.reply({files: [`./images/${memes[generateUniqueRandom(memes.length - 1)]}`]})
   }
 }); 
 
