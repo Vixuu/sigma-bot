@@ -41,9 +41,29 @@ client.on('interactionCreate', async interaction => {
   } else if (commandName === 'sigma') {
     await interaction.reply("1. Pal weed \n2. Nie wciagaj krysztalu z Torunia \n4. Nie mieszaj alko z mewa \n5. Nie wal z dychy")
   } else if (commandName === 'essa') {
-    const rand = Math.floor(Math.random() * 11 + 1);
-    console.log(rand)
-    await interaction.reply({files: [`./images/test11.jpg`]})
+
+    let haveIt = [];
+    function generateUniqueRandom(maxNr) {
+        //Generate random number
+        let random = (Math.random() * maxNr).toFixed();
+
+        //Coerce to number by boxing
+        random = Number(random);
+
+        if(!haveIt.includes(random)) {
+            haveIt.push(random);
+            return random;
+        } else {
+            if(haveIt.length < maxNr) {
+              //Recursively generate number
+            return  generateUniqueRandom(maxNr);
+            } else {
+              console.log('No more numbers available.')
+              return 1;
+            }
+        }
+    }
+    await interaction.reply({files: [`./images/test${generateUniqueRandom(17)}.jpg`]})
   }
 }); 
 
