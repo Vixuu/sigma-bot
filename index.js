@@ -43,7 +43,7 @@ client.on('interactionCreate', async interaction => {
   } else if (commandName === 'essa') {
     const rand = Math.floor(Math.random() * 11 + 1);
     console.log(rand)
-    await interaction.reply({files: [`./images/test11.jpg`]})
+    await interaction.reply({files: [`./images/test${rand}.jpg`]})
   }
 }); 
 
